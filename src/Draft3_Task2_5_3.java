@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Draft3_Task2_5_3 {
 
     //        Пример 2 ППППППППППППППППППППППППППППППППППП  УДАЛСЯ ОКОНЧАТЕЛЬНО !!!!!!!!!!!!!!!!!!
@@ -18,6 +20,10 @@ public class Draft3_Task2_5_3 {
         a[7] = "Строка восемь";
         a[8] = "Строка девять";
         a[9] = "Строка десять";
+
+        System.out.println(Arrays.toString(a));
+        System.out.println();
+        System.out.println("Выводим с конца каждую вторую");
 
         for (int i = 8; i >= 0; i = i - 2) {
             System.out.println(a[i]);
