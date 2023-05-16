@@ -1,7 +1,9 @@
-import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Random;
 
 import static java.lang.String.valueOf;
 
@@ -18,67 +20,123 @@ public class Draft8_Task2_5_8 {
 //    Скачивали цитаты: Модуль 1. Урок 8. Задание 4.
 
 
+    //        Пример 12 ППППППППППППППППППППППППППППППППППП
+    public static void main(String[] args) throws IOException {
+    //  Сохраняем список случайных слов в файле по адресу: C:\Users\PC\IdeaProjectsDrafts\Draft230512_Module2_Urok5\1000_Random_Words,
+    //  т.е. в корневом каталоге проекта. Про сохранение в файл видео здесь: https://www.youtube.com/watch?v=WU0BXXZP3WE
+        String[] randomStrings = new String[1000];
 
-//        Пример 10 ППППППППППППППППППППППППППППППППППП из чистового файла папки Java
 
-        public static void main(String[] args) throws IOException {
+        /*//  Программа для сохранения в файл:
+        File myFile = new File ("1000_Random_Words");
+        BufferedWriter writer = new BufferedWriter(new FileWriter (myFile, true));
+        writer.write(Arrays.toString(randomStrings));
+        writer.flush();
+        writer.close();*/
 
-            System.out.print("Первый игрок, введите слово с маленькой буквы, пример 'банан': ");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String word_Of_First_Player = reader.readLine();
-            StringBuilder strBuilder = new StringBuilder();
-            String guessedWord;
 
-//            Создаем слово и массив с закрытыми буквами (вместо букв пишется символ '#') для первого игрока
-            String[] letters_Closed = new String[word_Of_First_Player.length()];
-            String currentLetter_Closed;
 
-            for (int i = 0; i < word_Of_First_Player.length(); i++) {
-                currentLetter_Closed = "#";
-                letters_Closed[i] = currentLetter_Closed;
-                strBuilder.append(letters_Closed[i]);
-            }
-            guessedWord = strBuilder.toString();
-            System.out.println(guessedWord);
 
-//            Создаем слово и массив с открытыми буквами для первого игрока
-            char[] chars = new char[word_Of_First_Player.length()];
-            /*String[] currentLetters = new String[word_Of_First_Player.length()];*/
-            String currentLetter;
+    }
+//        Конец Примера 12 КККККККККККККККК
 
-            for (int i = 0; i < word_Of_First_Player.length(); i++) {
-                chars[i] = word_Of_First_Player.charAt(i);
-                /*currentLetter = valueOf(chars[i]);*/
-                /*currentLetters[i] = currentLetter;*/
-            }
-            System.out.println();
-            do {
 
-                System.out.print("Второй игрок, введите букву кириллицы: ");
-                String letter_From_Second_Player = reader.readLine();
 
-                guessedWord = guessedWord;
-                for (int i = 0; i < guessedWord.length(); i++) {
-                    chars[i] = word_Of_First_Player.charAt(i);
-                    currentLetter = valueOf(chars[i]);
 
-                    if (letter_From_Second_Player.equals(currentLetter)) {
-                        chars[i] = word_Of_First_Player.charAt(i);
-                        letters_Closed[i] = letter_From_Second_Player;
-                    }
-                }
-                strBuilder = new StringBuilder();
-                for (int i = 0; i < letters_Closed.length; i++) {
-                    strBuilder.append(letters_Closed[i]);
-                }
-                guessedWord = strBuilder.toString();
-                System.out.println(guessedWord);
-            }
-            while (guessedWord.contains("#"));
 
-            System.out.println("Слово отгадано");
-        }
-//        Конец Примера 10 ККККККККККККККК
+////        Пример 11 ППППППППППППППППППППППППППППППППППП из интернет Генерация случайных слов в Java _  https://translated.turbopages.org/proxy_u/en-ru.ru.6bded37a-6461f4c7-3ef098ba-74722d776562/https/stackoverflow.com/questions/4951997/generating-random-words-in-java
+//
+//    public static void main(String[] args) {
+//
+//    }
+//    public static String[] generateRandomWords(int numberOfWords)
+//    {
+//        String[] randomStrings = new String[]{"авеню", "авизо", "авост", "агава", "агами"};
+//
+//        Random random = new Random();
+//        for(int i = 0; i < randomStrings.length; i++)
+//        {
+//            char[] word = new char[random.nextInt(8)+3]; // words of length 3 through 10. (1 and 2 letter words are boring.)
+//            for(int j = 0; j < word.length; j++)
+//            {
+//                word[j] = (char)('a' + random.nextInt(26));
+//            }
+//            randomStrings[i] = new String(word);
+//            System.out.println(randomStrings);
+//
+//        }
+//        return randomStrings;
+//    }
+//
+//    //        Конец Примера 11 ККККККККККККККК
+
+
+
+
+
+
+
+
+////        Пример 10 ППППППППППППППППППППППППППППППППППП из чистового файла папки Java
+//
+//        public static void main(String[] args) throws IOException {
+//
+//            System.out.print("Первый игрок, введите слово с маленькой буквы, пример 'банан': ");
+//            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//            String word_Of_First_Player = reader.readLine();
+//            StringBuilder strBuilder = new StringBuilder();
+//            String guessedWord;
+//
+////            Создаем слово и массив с закрытыми буквами (вместо букв пишется символ '#') для первого игрока
+//            String[] letters_Closed = new String[word_Of_First_Player.length()];
+//            String currentLetter_Closed;
+//
+//            for (int i = 0; i < word_Of_First_Player.length(); i++) {
+//                currentLetter_Closed = "#";
+//                letters_Closed[i] = currentLetter_Closed;
+//                strBuilder.append(letters_Closed[i]);
+//            }
+//            guessedWord = strBuilder.toString();
+//            System.out.println(guessedWord);
+//
+////            Создаем слово и массив с открытыми буквами для первого игрока
+//            char[] chars = new char[word_Of_First_Player.length()];
+//            /*String[] currentLetters = new String[word_Of_First_Player.length()];*/
+//            String currentLetter;
+//
+//            for (int i = 0; i < word_Of_First_Player.length(); i++) {
+//                chars[i] = word_Of_First_Player.charAt(i);
+//                /*currentLetter = valueOf(chars[i]);*/
+//                /*currentLetters[i] = currentLetter;*/
+//            }
+//            System.out.println();
+//            do {
+//
+//                System.out.print("Второй игрок, введите букву кириллицы: ");
+//                String letter_From_Second_Player = reader.readLine();
+//
+//                guessedWord = guessedWord;
+//                for (int i = 0; i < guessedWord.length(); i++) {
+//                    chars[i] = word_Of_First_Player.charAt(i);
+//                    currentLetter = valueOf(chars[i]);
+//
+//                    if (letter_From_Second_Player.equals(currentLetter)) {
+//                        chars[i] = word_Of_First_Player.charAt(i);
+//                        letters_Closed[i] = letter_From_Second_Player;
+//                    }
+//                }
+//                strBuilder = new StringBuilder();
+//                for (int i = 0; i < letters_Closed.length; i++) {
+//                    strBuilder.append(letters_Closed[i]);
+//                }
+//                guessedWord = strBuilder.toString();
+//                System.out.println(guessedWord);
+//            }
+//            while (guessedWord.contains("#"));
+//
+//            System.out.println("Слово отгадано");
+//        }
+////        Конец Примера 10 ККККККККККККККК
 
 
 

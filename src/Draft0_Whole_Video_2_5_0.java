@@ -31,7 +31,7 @@ public class Draft0_Whole_Video_2_5_0 {
 
 
 
-//    //        Пример 8 ППППППППППППППППППППППППППППППППППП Создание BufferedReader для чтения книги
+//    //        Пример 8 ППППППППППППППППППППППППППППППППППП Создание BufferedReader для чтения книги, видео мин 40.46
 //    public static void main(String[] args) throws IOException, InterruptedException {
 //        FileReader fileReader = new FileReader("book.txt");
 //        BufferedReader reader = new BufferedReader(fileReader);
