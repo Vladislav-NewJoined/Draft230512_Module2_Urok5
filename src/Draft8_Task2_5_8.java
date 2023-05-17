@@ -1,11 +1,13 @@
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
+
+import java.io.*;
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 import static java.lang.String.valueOf;
+import static java.util.stream.DoubleStream.builder;
 
 public class Draft8_Task2_5_8 {
             /*System.out.println("Задание: \n8.\tПоле чудес с соревнованием. Генерируете 1000 случайных слов на сайте- " +
@@ -20,25 +22,500 @@ public class Draft8_Task2_5_8 {
 //    Скачивали цитаты: Модуль 1. Урок 8. Задание 4.
 
 
-    //        Пример 12 ППППППППППППППППППППППППППППППППППП
-    public static void main(String[] args) throws IOException {
-    //  Сохраняем список случайных слов в файле по адресу: C:\Users\PC\IdeaProjectsDrafts\Draft230512_Module2_Urok5\1000_Random_Words,
-    //  т.е. в корневом каталоге проекта. Про сохранение в файл видео здесь: https://www.youtube.com/watch?v=WU0BXXZP3WE
-        String[] randomStrings = new String[1000];
 
 
-        /*//  Программа для сохранения в файл:
-        File myFile = new File ("1000_Random_Words");
-        BufferedWriter writer = new BufferedWriter(new FileWriter (myFile, true));
-        writer.write(Arrays.toString(randomStrings));
-        writer.flush();
-        writer.close();*/
+    //        Пример _ ППППППППППППППППППППППППППППППППППП Работает с этапом 'закончить'; Далее прописать банк очков и рандомное слово
+    public static void main(String[] args) {
+
+        Scanner scanner_Letter_From_First_Player = new Scanner(System.in); // видео мин 23.05
+        Scanner scanner_Letter_From_Second_Player = new Scanner(System.in);
+
+        StringBuilder strBuilder = new StringBuilder();
+        String word_For_Guess = "береза";
+        System.out.println("Слово для отгадывания: " + word_For_Guess);
+        String word_With_Closed_Letters; /*= "#####";*/
+
+//            Создаем массив из букв загаданного слова
+        char[] chars = new char[word_For_Guess.length()];
+        /*String[] currentLetters = new String[word_Of_First_Player.length()];*/
+        String[] array_Letters_Of_Word_For_Guess = new String[word_For_Guess.length()];
+        String[] array_Letters_Of_Word_With_Closed_Letters = new String[word_For_Guess.length()];
+        String currentLetter;
+        String currentLetter_Closed;
+
+        String entered_Letter;
+        String letter_From_Second_Player;
+
+
+        for (int i = 0; i < word_For_Guess.length(); i++) {
+            currentLetter_Closed = "#";
+            array_Letters_Of_Word_With_Closed_Letters[i] = currentLetter_Closed;
+            strBuilder.append(array_Letters_Of_Word_With_Closed_Letters[i]);
+        }
+
+        /*System.out.print("Массив и буквы слова с закрытыми буквами: ");  // НЕ УДАЛЯТЬ!
+        System.out.print(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));  // НЕ УДАЛЯТЬ!
+        System.out.println();*/  // НЕ УДАЛЯТЬ!
+
+        System.out.print("Слово с закрытыми буквами: ");
+        word_With_Closed_Letters = strBuilder.toString();
+        System.out.println(word_With_Closed_Letters);
+        System.out.println();
+
+
+        // Игроки начинают по очереди отгадывать буквы
+        while (!word_With_Closed_Letters.equals(word_For_Guess)) {
+
+            System.out.print("Первый игрок: введите строчную букву кириллицы: ");
+            entered_Letter = scanner_Letter_From_First_Player.nextLine();
+
+            for (int i = 0; i < word_For_Guess.length(); i++) {
+                if (entered_Letter.equals(valueOf(word_For_Guess.charAt(i)))) {
+                    array_Letters_Of_Word_With_Closed_Letters[i] = entered_Letter;
+
+                }
+            }
+
+            if (word_For_Guess.contains(entered_Letter) && !entered_Letter.equals("")) {
+                System.out.println("Есть такая буква.");
+                word_With_Closed_Letters = "";
+                for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+                    word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+                }
+
+                System.out.println("Слово с закрытыми буквами стало: ");
+                System.out.println(word_With_Closed_Letters + "\n");
+            } else {
+                System.out.println("Такой буквы нет." + "\n");
+
+            }
+            if (word_With_Closed_Letters.equals(word_For_Guess)) {
+                System.out.println("Слово отгадано, конец программы.");
+                System.exit(0);
+            }
 
 
 
 
+
+
+
+
+
+
+            System.out.print("Второй игрок: введите строчную букву кириллицы: ");
+            entered_Letter = scanner_Letter_From_First_Player.nextLine();
+
+            for (int i = 0; i < word_For_Guess.length(); i++) {
+                if (entered_Letter.equals(valueOf(word_For_Guess.charAt(i)))) {
+                    array_Letters_Of_Word_With_Closed_Letters[i] = entered_Letter;
+
+                }
+            }
+
+            if (word_For_Guess.contains(entered_Letter) && !entered_Letter.equals("")) {
+                System.out.println("Есть такая буква.");
+                word_With_Closed_Letters = "";
+                for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+                    word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+                }
+
+                System.out.println("Слово с закрытыми буквами стало: ");
+                System.out.println(word_With_Closed_Letters + "\n");
+            } else {
+                System.out.println("Такой буквы нет." + "\n");
+
+            }
+            if (word_With_Closed_Letters.equals(word_For_Guess)) {
+                System.out.println("Слово отгадано, конец программы.");
+                System.exit(0);
+            }
+        }
     }
-//        Конец Примера 12 КККККККККККККККК
+//        Конец Примера _ КККККККККККККККК
+
+
+
+
+
+
+
+//    //        Пример 17 ППППППППППППППППППППППППППППППППППП проверяем System.exit из интернет
+//    public static void main(String[] args) {
+//
+//        int a[]= {1,2,3,4,5,6,7,8,9,10};
+//        for(int i=0;i<a.length;i++)
+//        {
+//            if(a[i]<=4)
+//            {
+//                System.out.println("array["+i+"]="+a[i]);
+//            }
+//            else
+//            {
+//                System.out.println("Exit from the loop");
+//                System.exit(0); //Terminates jvm
+//            }
+//        }
+//
+//    }
+////        Конец Примера 17 КККККККККККККККК
+
+
+
+
+
+
+
+
+//    //        Пример 16 ППППППППППППППППППППППППППППППППППП Работает до этапа 'закончить'; взято за основу (образец - Пример 2, Пример 13): из задания Модуль 2,Урок 2, Задание 8., где вводят по очереди
+//    public static void main(String[] args) {
+//
+//        Scanner scanner_Letter_From_First_Player = new Scanner(System.in); // видео мин 23.05
+//        Scanner scanner_Letter_From_Second_Player = new Scanner(System.in);
+//
+//        StringBuilder strBuilder = new StringBuilder();
+//        String word_For_Guess = "агава";
+//        System.out.println("Слово для отгадывания: " + word_For_Guess);
+//        String word_With_Closed_Letters; /*= "#####";*/
+//
+////            Создаем массив из букв загаданного слова
+//        char[] chars = new char[word_For_Guess.length()];
+//        /*String[] currentLetters = new String[word_Of_First_Player.length()];*/
+//        String[] array_Letters_Of_Word_For_Guess = new String[word_For_Guess.length()];
+//        String[] array_Letters_Of_Word_With_Closed_Letters = new String[word_For_Guess.length()];
+//        String currentLetter;
+//        String currentLetter_Closed;
+//
+//        String letter_From_First_Player;
+//        String letter_From_Second_Player;
+//
+//
+//        for (int i = 0; i < word_For_Guess.length(); i++) {
+//            currentLetter_Closed = "#";
+//            array_Letters_Of_Word_With_Closed_Letters[i] = currentLetter_Closed;
+//            strBuilder.append(array_Letters_Of_Word_With_Closed_Letters[i]);
+//        }
+//
+//        /*System.out.print("Массив и буквы слова с закрытыми буквами: ");  // НЕ УДАЛЯТЬ!
+//        System.out.print(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));  // НЕ УДАЛЯТЬ!
+//        System.out.println();*/  // НЕ УДАЛЯТЬ!
+//
+//        System.out.print("Слово с закрытыми буквами: ");
+//        word_With_Closed_Letters = strBuilder.toString();
+//        System.out.println(word_With_Closed_Letters);
+//
+//
+//        // Игроки начинают по очереди отгадывать буквы
+//        while (!word_With_Closed_Letters.equals(word_For_Guess)) {
+//
+//            System.out.print("Первый игрок: введите строчную букву кириллицы: ");
+//            letter_From_First_Player = scanner_Letter_From_First_Player.nextLine();
+//
+//            for (int i = 0; i < word_For_Guess.length(); i++) {
+//                /*while (true) {*/
+//                /*System.out.println("Первый игрок: введите строку (т.е. предполагаемое секретное слово): ");*/
+//                if (letter_From_First_Player.equals(valueOf(word_For_Guess.charAt(i)))) {
+//                    array_Letters_Of_Word_With_Closed_Letters[i] = letter_From_First_Player;
+//
+//                }
+//            }
+//
+//            if (word_For_Guess.contains(letter_From_First_Player)) {
+//                System.out.println("Есть такая буква.");
+//                word_With_Closed_Letters = "";
+//                for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+//                    word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+//                }
+//
+//                // ОБЕРНУТЬ В ЦИКЛ WHILE
+//                System.out.println("Слово с закрытыми буквами стало: ");
+//                System.out.println(word_With_Closed_Letters);
+//            } else {
+//                System.out.println("Такой буквы нет.");
+//
+//                }
+//
+//
+//
+//            /*System.out.println(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));*/  // НЕ УДАЛЯТЬ
+//        /*}
+//        while (word_With_Closed_Letters.contains("#")) {*/
+//
+//            System.out.print("Второй игрок: введите строчную букву кириллицы: ");
+//            letter_From_First_Player = scanner_Letter_From_First_Player.nextLine();
+//
+//            for (int i = 0; i < word_For_Guess.length(); i++) {
+//                /*while (true) {*/
+//                /*System.out.println("Первый игрок: введите строку (т.е. предполагаемое секретное слово): ");*/
+//                if (letter_From_First_Player.equals(valueOf(word_For_Guess.charAt(i)))) {
+//                    array_Letters_Of_Word_With_Closed_Letters[i] = letter_From_First_Player;
+//                    /*System.out.println("Есть такая буква.");*/
+//                }
+//            }
+//
+//
+//
+//            /*System.out.println(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));*/  // НЕ УДАЛЯТЬ
+//            word_With_Closed_Letters = "";
+//            for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+//                word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+//            }
+//
+//            // ОБЕРНУТЬ В ЦИКЛ WHILE
+//            System.out.println("Слово с закрытыми буквами стало: ");
+//            System.out.println(word_With_Closed_Letters);
+//        }
+//
+//    }
+////        Конец Примера 16 КККККККККККККККК
+
+
+
+
+
+
+
+
+//    //        Пример 15 ППППППППППППППППППППППППППППППППППП Работает до этапа 'закончить'; взято за основу (образец - Пример 2, Пример 13): из задания Модуль 2,Урок 2, Задание 8., где вводят по очереди
+//    public static void main(String[] args) {
+//
+//        Scanner scanner_Letter_From_First_Player = new Scanner(System.in); // видео мин 23.05
+//        Scanner scanner_Letter_From_Second_Player = new Scanner(System.in);
+//
+//        StringBuilder strBuilder = new StringBuilder();
+//        String word_For_Guess = "агава";
+//        System.out.println("Слово для отгадывания: " + word_For_Guess);
+//        String word_With_Closed_Letters; /*= "#####";*/
+//
+////            Создаем массив из букв загаданного слова
+//        char[] chars = new char[word_For_Guess.length()];
+//        /*String[] currentLetters = new String[word_Of_First_Player.length()];*/
+//        String[] array_Letters_Of_Word_For_Guess = new String[word_For_Guess.length()];
+//        String[] array_Letters_Of_Word_With_Closed_Letters = new String[word_For_Guess.length()];
+//        String currentLetter;
+//        String currentLetter_Closed;
+//
+//        String letter_From_First_Player;
+//        String letter_From_Second_Player;
+//
+//
+//        for (int i = 0; i < word_For_Guess.length(); i++) {
+//            currentLetter_Closed = "#";
+//            array_Letters_Of_Word_With_Closed_Letters[i] = currentLetter_Closed;
+//            strBuilder.append(array_Letters_Of_Word_With_Closed_Letters[i]);
+//        }
+//
+//        /*System.out.print("Массив и буквы слова с закрытыми буквами: ");  // НЕ УДАЛЯТЬ!
+//        System.out.print(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));  // НЕ УДАЛЯТЬ!
+//        System.out.println();*/  // НЕ УДАЛЯТЬ!
+//
+//        System.out.print("Слово с закрытыми буквами: ");
+//        word_With_Closed_Letters = strBuilder.toString();
+//        System.out.println(word_With_Closed_Letters);
+//
+//
+//        // Игроки начинают по очереди отгадывать буквы
+//        while (!word_With_Closed_Letters.equals(word_For_Guess)) {
+//
+//            System.out.print("Первый игрок: введите строчную букву кириллицы: ");
+//            letter_From_First_Player = scanner_Letter_From_First_Player.nextLine();
+//
+//            for (int i = 0; i < word_For_Guess.length(); i++) {
+//                /*while (true) {*/
+//                /*System.out.println("Первый игрок: введите строку (т.е. предполагаемое секретное слово): ");*/
+//                if (letter_From_First_Player.equals(valueOf(word_For_Guess.charAt(i)))) {
+//                    array_Letters_Of_Word_With_Closed_Letters[i] = letter_From_First_Player;
+//                }
+//            }
+//
+//
+//            System.out.println("Есть такая буква.");
+//
+//            /*System.out.println(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));*/  // НЕ УДАЛЯТЬ
+//            word_With_Closed_Letters = "";
+//            for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+//                word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+//            }
+//
+//            // ОБЕРНУТЬ В ЦИКЛ WHILE
+//            System.out.println("Слово с закрытыми буквами стало: ");
+//            System.out.println(word_With_Closed_Letters);
+//        /*}
+//
+//
+//        while (word_With_Closed_Letters.contains("#")) {*/
+//            System.out.print("Второй игрок: введите строчную букву кириллицы: ");
+//            letter_From_First_Player = scanner_Letter_From_First_Player.nextLine();
+//
+//            for (int i = 0; i < word_For_Guess.length(); i++) {
+//                /*while (true) {*/
+//                /*System.out.println("Первый игрок: введите строку (т.е. предполагаемое секретное слово): ");*/
+//                if (letter_From_First_Player.equals(valueOf(word_For_Guess.charAt(i)))) {
+//                    array_Letters_Of_Word_With_Closed_Letters[i] = letter_From_First_Player;
+//                }
+//            }
+//
+//
+//            System.out.println("Есть такая буква.");
+//
+//            /*System.out.println(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));*/  // НЕ УДАЛЯТЬ
+//            word_With_Closed_Letters = "";
+//            for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+//                word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+//            }
+//
+//            // ОБЕРНУТЬ В ЦИКЛ WHILE
+//            System.out.println("Слово с закрытыми буквами стало: ");
+//            System.out.println(word_With_Closed_Letters);
+//        }
+//
+//    }
+////        Конец Примера 15 КККККККККККККККК
+
+
+
+
+
+
+
+
+//    //        Пример 14 ППППППППППППППППППППППППППППППППППП  РАБОТАЕТ
+//    public static void main(String[] args) {
+//
+//
+//    String[] strArr = new String[] { "а", "г", "а", "в", "а" };
+//    String str = "";
+//        for (int i = 0; i < strArr.length; i++) {
+//        str = str + strArr[i];
+//    }
+//        System.out.println(str);
+//
+//  или
+//
+//        String[] strArr = new String[] { "а", "г", "а", "в", "а" };
+//        String str = strArr[0];
+//        for (int i = 1; i < strArr.length; i++) {
+//            str = str + strArr[i];
+//        }
+//        System.out.println(str);
+//    }
+////        Конец Примера 14 КККККККККККККККК
+
+
+
+
+
+
+
+    //    //        Пример 13 ППППППППППППППППППППППППППППППППППП из задания Модуль 2,Урок 2, Задание 8., где вводят по очереди
+//    public static void main(String[] args) {
+//        System.out.println("Задание: \n8.\tПервый игрок сохраняет слово и подсказку в первый файл, второй игрок во второй. \nИгра начинается, выводятся подсказки, игроки по-очереди пытаются отгадать слово \nпротивника.\n");
+//        System.out.println("Решение: ");
+//
+//        // Первый игрок создает файл и пишет подсказку
+//        System.out.println("Первый игрок создает файл 'textForTask_8_First_Player.txt'. В нем две строки: " +
+//                "секретное слово и подсказка: \nПариж\nФранция\n"); // инфо, как создать файл txt здесь: https://yandex.ru/video/preview/9761637152705084468
+//        System.out.println("Подсказка: \nФранция\n");
+//        String secrWord_Of_First_Player = "Париж";
+//        File myFile_First_Player = new File("src\\" + "textForTask_8_First_Player.txt");
+//
+//        try {
+//            PrintWriter writer_First_Player = new PrintWriter(new BufferedWriter(new FileWriter(myFile_First_Player, false)));
+//            writer_First_Player.println("Париж");
+//            writer_First_Player.flush();
+//            writer_First_Player.close();
+//            PrintWriter writer2_First_Player = new PrintWriter(new BufferedWriter(new FileWriter(myFile_First_Player, true)));
+//            writer2_First_Player.println("Франция");
+////            writer2_First_Player.flush();
+//            writer2_First_Player.close();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        // Второй игрок создает файл и пишет подсказку
+//        System.out.println("Второй игрок создает файл 'textForTask_8_Second_Player.txt'. В нем две строки: " +
+//                "секретное слово и подсказка: \nМадрид\nИспания\n"); // инфо, как создать файл txt здесь: https://yandex.ru/video/preview/9761637152705084468
+//        System.out.println("Подсказка: \nИспания\n");
+//        String secrWord_Of_Second_Player = "Мадрид";
+//        File myFile_Second_Player = new File("src\\" + "textForTask_8_Second_Player.txt");
+//
+//        try {
+//            PrintWriter writer_Second_Player = new PrintWriter(new BufferedWriter(new FileWriter(myFile_Second_Player, false)));
+//            writer_Second_Player.println("Мадрид");
+//            writer_Second_Player.flush();
+//            writer_Second_Player.close();
+//            PrintWriter writer2_Second_Player = new PrintWriter(new BufferedWriter(new FileWriter(myFile_Second_Player, true)));
+//            writer2_Second_Player.println("Испания");
+////            writer2_Second_Player.flush();
+//            writer2_Second_Player.close();
+//        } catch (IOException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        // Теперь поочерёдно вводят слова
+//        String str_FromFirstPl;
+//        String str_FromSecondPl;
+//
+//        Scanner scanner_FromFirst_Player = new Scanner(System.in); // видео мин 23.05
+//        Scanner scanner_FromSecond_Player = new Scanner(System.in);
+//
+//        while (true) {
+//            System.out.println("Первый игрок: введите строку (т.е. предполагаемое секретное слово): ");
+//            str_FromFirstPl = scanner_FromFirst_Player.nextLine();
+//            if ((secrWord_Of_Second_Player.contains(str_FromFirstPl)) && (!str_FromFirstPl.equals(secrWord_Of_Second_Player)) && (!str_FromFirstPl.equals(""))) {
+//                System.out.println("Горячо.");
+//            } else if
+//            ((!secrWord_Of_Second_Player.contains(str_FromFirstPl)) || (!str_FromFirstPl.equals(secrWord_Of_Second_Player)) || (str_FromFirstPl.equals(""))) {
+//                System.out.println("Не верно.");
+//            } else {
+//                System.out.println("Правильно!");
+//                System.out.println("Победил первый игрок.");
+//                break;
+//            }
+//
+//            System.out.println("Второй игрок: введите строку (т.е. предполагаемое секретное слово): ");
+//            str_FromSecondPl = scanner_FromSecond_Player.nextLine();
+//            if ((secrWord_Of_First_Player.contains(str_FromSecondPl)) && (!str_FromSecondPl.equals(secrWord_Of_First_Player)) && (!str_FromSecondPl.equals(""))) {
+//                System.out.println("Горячо.");
+//            } else if
+//            ((!secrWord_Of_First_Player.contains(str_FromSecondPl)) || (!str_FromSecondPl.equals(secrWord_Of_First_Player)) || (str_FromSecondPl.equals(""))) {
+//                System.out.println("Не верно.");
+//            } else {
+//                System.out.println("Правильно!");
+//                System.out.println("Победил второй игрок.");
+//                break;
+//            }
+//        }
+//    }
+////        Конец Примера 13 КККККККККККККККК
+
+
+
+
+
+
+
+
+//
+//    //        Пример 12 ППППППППППППППППППППППППППППППППППП
+//    public static void main(String[] args) throws IOException {
+//    //  Сохраняем список случайных слов в файле по адресу: C:\Users\PC\IdeaProjectsDrafts\Draft230512_Module2_Urok5\1000_Random_Words,
+//    //  т.е. в корневом каталоге проекта. Про сохранение в файл видео здесь: https://www.youtube.com/watch?v=WU0BXXZP3WE
+//        String[] randomStrings = new String[1000];
+//
+//
+//        /*//  Программа для сохранения в файл:
+//        File myFile = new File ("1000_Random_Words");
+//        BufferedWriter writer = new BufferedWriter(new FileWriter (myFile, true));
+//        writer.write(Arrays.toString(randomStrings));
+//        writer.flush();
+//        writer.close();*/
+//
+//
+//
+//
+//    }
+////        Конец Примера 12 КККККККККККККККК
 
 
 
