@@ -119,6 +119,12 @@ public class Draft8_Task2_5_8 {
         int increase_For_Whole_Word_1 = 0;
         int increase_For_Whole_Word_2 = 0;
 
+        // Инициализируем массив гласных букв
+        String[] vowel_Letters = {"а", "о", "э", "е", "и", "ы", "у", "ё", "ю", "я"};
+
+        // Инициализируем согласных букв
+        String[] сonsonant_Letters = {"б", "в", "г", "д", "ж", "з", "й", "к", "л", "м", "н", "п", "р", "с", "т", "ф", "х", "ц", "ч", "ш", "щ", "ь", "ъ"};
+
         // Игроки начинают по очереди отгадывать буквы
         while (!word_With_Closed_Letters.equals(word_For_Guess)) {
 
