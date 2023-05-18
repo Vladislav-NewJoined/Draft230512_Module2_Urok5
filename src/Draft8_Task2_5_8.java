@@ -113,6 +113,11 @@ public class Draft8_Task2_5_8 {
         System.out.println(word_With_Closed_Letters);
         System.out.println();
 
+        // Инициализируем для каждого игрока 'банк' очков
+        int bank1 = 0;
+        int bank2 = 0;
+        int increase_For_Whole_Word_1 = 0;
+        int increase_For_Whole_Word_2 = 0;
 
         // Игроки начинают по очереди отгадывать буквы
         while (!word_With_Closed_Letters.equals(word_For_Guess)) {
@@ -129,6 +134,8 @@ public class Draft8_Task2_5_8 {
 
             if (word_For_Guess.contains(entered_Letter) && !entered_Letter.equals("")) {
                 System.out.println("Есть такая буква.");
+                bank1 = bank1 + 2;
+                System.out.println("Количество очков у первого игрока: " + bank1);
                 word_With_Closed_Letters = "";
                 for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
                     word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
@@ -137,11 +144,16 @@ public class Draft8_Task2_5_8 {
                 System.out.println("Слово с закрытыми буквами стало: ");
                 System.out.println(word_With_Closed_Letters + "\n");
             } else {
-                System.out.println("Такой буквы нет." + "\n");
+                System.out.println("Такой буквы нет.");
+                bank1 = bank1 - 3;
+                System.out.println("Количество очков у первого игрока: " + bank1 + "\n");
 
             }
             if (word_With_Closed_Letters.equals(word_For_Guess)) {
                 System.out.println("Слово отгадано, конец программы.");
+                System.out.println("Победил первый игрок.");
+                System.out.println("Количество очков у первого игрока: " + bank1);
+                System.out.println("Количество очков у второго игрока: " + bank2);
                 System.exit(0);
             }
 
@@ -158,6 +170,8 @@ public class Draft8_Task2_5_8 {
 
             if (word_For_Guess.contains(entered_Letter) && !entered_Letter.equals("")) {
                 System.out.println("Есть такая буква.");
+                bank2 = bank2 + 2;
+                System.out.println("Количество очков у второго игрока: " + bank2);
                 word_With_Closed_Letters = "";
                 for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
                     word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
@@ -166,16 +180,193 @@ public class Draft8_Task2_5_8 {
                 System.out.println("Слово с закрытыми буквами стало: ");
                 System.out.println(word_With_Closed_Letters + "\n");
             } else {
-                System.out.println("Такой буквы нет." + "\n");
+                System.out.println("Такой буквы нет.");
+                bank2 = bank2 - 3;
+                System.out.println("Количество очков у второго игрока: " + bank2 + "\n");
 
             }
             if (word_With_Closed_Letters.equals(word_For_Guess)) {
                 System.out.println("Слово отгадано, конец программы.");
+                System.out.println("Победил второй игрок.");
+                System.out.println("Количество очков у первого игрока: " + bank1);
+                System.out.println("Количество очков у второго игрока: " + bank2);
                 System.exit(0);
             }
         }
     }
 //        Конец Примера _ КККККККККККККККК
+
+
+
+
+
+
+
+//    //        Пример 19 ППППППППППППППППППППППППППППППППППП Работает с этапом 'закончить'; Далее прописать банк очков и рандомное слово
+//    public static void main(String[] args) throws IOException, InterruptedException {
+//        Scanner scanner_Letter_From_First_Player = new Scanner(System.in); // видео мин 23.05
+//        Scanner scanner_Letter_From_Second_Player = new Scanner(System.in);
+//
+////        // Создаём статический массив Array из списка слов из файла
+////        FileReader fileReader = new FileReader("1000_Random_Words.txt");
+////        BufferedReader reader = new BufferedReader(fileReader);
+////
+////        /*List<String> list_Of_Random_Words = new ArrayList<>();*/
+////        String[] list_Of_Random_Words = new String[10];
+////
+////        for (int i=0; i<list_Of_Random_Words.length; i++) {
+////            list_Of_Random_Words [i] = reader.readLine();
+////            System.out.println(list_Of_Random_Words [i]);
+////        }
+////
+////        System.out.println(Arrays.toString(list_Of_Random_Words));
+////
+////        for (int i=2; i<5; i++) {
+////            System.out.println(list_Of_Random_Words[i]);
+////        }
+//
+//
+////        // Теперь то же самое, но: создаём динамический (а не статический) массив Array из списка слов из файла
+////        /*List<String> list_Of_Random_Words;*/
+////        try {
+////            List<String> list_Of_Random_Words = new ArrayList<>(Files.readAllLines(Paths.get("1000_Random_Words.txt")));
+////            /*System.out.println(Arrays.toString(new List[]{list_Of_Random_Words}));*/
+////            /*System.out.println(list_Of_Random_Words);*/
+////
+////            System.out.println();
+////            for (int i=2; i<5; i++) {
+////                System.out.println(list_Of_Random_Words.get(i));
+////            }
+////
+////        }
+////        catch (IOException e) {  // Handle a potential exception
+////        }
+//
+//        //  Выбираем случайное слово из массива list_Of_Random_Words. инфо здесь: Метод третий взят.  https://translated.turbopages.org/proxy_u/en-ru.ru.213ba5e0-6465ba90-2379d590-74722d776562/https/www.geeksforgeeks.org/getting-random-elements-from-arraylist-in-java/
+//        List<String> list_Of_Random_Words = new ArrayList<>(Files.readAllLines(Paths.get("1000_Random_Words.txt")));
+//        Random random_method = new Random();
+//        int index = 0;
+//        for (int i = 0; i < list_Of_Random_Words.size(); i++)
+//        {
+//            // generating random index with the help of
+//            // nextInt() method
+//            index = random_method.nextInt(list_Of_Random_Words.size());
+//        }
+//            /*System.out.println("Рандомное (случайное) слово из списка: " + list_Of_Random_Words.get(index));*/
+//
+//
+//        StringBuilder strBuilder = new StringBuilder();
+//        String word_For_Guess = list_Of_Random_Words.get(index);
+//        System.out.println("Слово для отгадывания: " + word_For_Guess);
+//        String word_With_Closed_Letters; /*= "#####";*/
+//
+////            Создаем массив из букв загаданного слова
+//        char[] chars = new char[word_For_Guess.length()];
+//        /*String[] currentLetters = new String[word_Of_First_Player.length()];*/
+//        String[] array_Letters_Of_Word_For_Guess = new String[word_For_Guess.length()];
+//        String[] array_Letters_Of_Word_With_Closed_Letters = new String[word_For_Guess.length()];
+//        String currentLetter;
+//        String currentLetter_Closed;
+//
+//        String entered_Letter;
+//        String letter_From_Second_Player;
+//
+//
+//        for (int i = 0; i < word_For_Guess.length(); i++) {
+//            currentLetter_Closed = "#";
+//            array_Letters_Of_Word_With_Closed_Letters[i] = currentLetter_Closed;
+//            strBuilder.append(array_Letters_Of_Word_With_Closed_Letters[i]);
+//        }
+//
+//        /*System.out.print("Массив и буквы слова с закрытыми буквами: ");  // НЕ УДАЛЯТЬ!
+//        System.out.print(Arrays.toString(array_Letters_Of_Word_With_Closed_Letters));  // НЕ УДАЛЯТЬ!
+//        System.out.println();*/  // НЕ УДАЛЯТЬ!
+//
+//        System.out.print("Слово с закрытыми буквами: ");
+//        word_With_Closed_Letters = strBuilder.toString();
+//        System.out.println(word_With_Closed_Letters);
+//        System.out.println();
+//
+//        // Инициализируем для каждого игрока 'банк' очков
+//        int bank1 = 0;
+//        int bank2 = 0;
+//
+//        // Игроки начинают по очереди отгадывать буквы
+//        while (!word_With_Closed_Letters.equals(word_For_Guess)) {
+//
+//            System.out.print("Первый игрок: введите строчную букву кириллицы: ");
+//            entered_Letter = scanner_Letter_From_First_Player.nextLine();
+//
+//            for (int i = 0; i < word_For_Guess.length(); i++) {
+//                if (entered_Letter.equals(valueOf(word_For_Guess.charAt(i)))) {
+//                    array_Letters_Of_Word_With_Closed_Letters[i] = entered_Letter;
+//
+//                }
+//            }
+//
+//            if (word_For_Guess.contains(entered_Letter) && !entered_Letter.equals("")) {
+//                System.out.println("Есть такая буква.");
+//                bank1 = bank1 + 2;
+//                System.out.println("Количество очков у первого игрока: " + bank1);
+//                word_With_Closed_Letters = "";
+//                for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+//                    word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+//                }
+//
+//                System.out.println("Слово с закрытыми буквами стало: ");
+//                System.out.println(word_With_Closed_Letters + "\n");
+//            } else {
+//                System.out.println("Такой буквы нет.");
+//                bank1 = bank1 - 3;
+//                System.out.println("Количество очков у первого игрока: " + bank1 + "\n");
+//
+//            }
+//            if (word_With_Closed_Letters.equals(word_For_Guess)) {
+//                System.out.println("Слово отгадано, конец программы.");
+//                System.out.println("Победил первый игрок.");
+//                System.out.println("Количество очков у первого игрока: " + bank1);
+//                System.out.println("Количество очков у второго игрока: " + bank2);
+//                System.exit(0);
+//            }
+//
+//
+//            System.out.print("Второй игрок: введите строчную букву кириллицы: ");
+//            entered_Letter = scanner_Letter_From_First_Player.nextLine();
+//
+//            for (int i = 0; i < word_For_Guess.length(); i++) {
+//                if (entered_Letter.equals(valueOf(word_For_Guess.charAt(i)))) {
+//                    array_Letters_Of_Word_With_Closed_Letters[i] = entered_Letter;
+//
+//                }
+//            }
+//
+//            if (word_For_Guess.contains(entered_Letter) && !entered_Letter.equals("")) {
+//                System.out.println("Есть такая буква.");
+//                bank2 = bank2 + 2;
+//                System.out.println("Количество очков у второго игрока: " + bank2);
+//                word_With_Closed_Letters = "";
+//                for (int i = 0; i < array_Letters_Of_Word_With_Closed_Letters.length; i++) {
+//                    word_With_Closed_Letters = word_With_Closed_Letters + array_Letters_Of_Word_With_Closed_Letters[i];
+//                }
+//
+//                System.out.println("Слово с закрытыми буквами стало: ");
+//                System.out.println(word_With_Closed_Letters + "\n");
+//            } else {
+//                System.out.println("Такой буквы нет.");
+//                bank2 = bank2 - 3;
+//                System.out.println("Количество очков у второго игрока: " + bank2 + "\n");
+//
+//            }
+//            if (word_With_Closed_Letters.equals(word_For_Guess)) {
+//                System.out.println("Слово отгадано, конец программы.");
+//                System.out.println("Победил второй игрок.");
+//                System.out.println("Количество очков у первого игрока: " + bank1);
+//                System.out.println("Количество очков у второго игрока: " + bank2);
+//                System.exit(0);
+//            }
+//        }
+//    }
+////        Конец Примера 19 КККККККККККККККК
 
 
 
