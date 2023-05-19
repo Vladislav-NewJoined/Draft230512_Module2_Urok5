@@ -184,7 +184,7 @@ public class Draft8_Task2_5_8 {
             }
             if (word_With_Closed_Letters.equals(word_For_Guess)) {
                 System.out.println("Слово отгадано первым игроком, конец программы.");
-                bank1 = bank1 + increase_For_Whole_Word_1; // todo
+                bank1 = bank1 + increase_For_Whole_Word_1;
                 System.out.println("Итоговое количество очков у первого игрока: " + bank1);
                 System.out.println("Итоговое количество очков у второго игрока: " + bank2);
                 System.exit(0);
@@ -244,7 +244,7 @@ public class Draft8_Task2_5_8 {
             }
             if (word_With_Closed_Letters.equals(word_For_Guess)) {
                 System.out.println("Слово отгадано вторым игроком, конец программы.");
-                bank2 = bank2 + increase_For_Whole_Word_2; // todo
+                bank2 = bank2 + increase_For_Whole_Word_2;
                 System.out.println("Итоговое количество очков у первого игрока: " + bank1);
                 System.out.println("Итоговое количество очков у второго игрока: " + bank2);
                 System.exit(0);
@@ -419,7 +419,7 @@ public class Draft8_Task2_5_8 {
 //            }
 //            if (word_With_Closed_Letters.equals(word_For_Guess)) {
 //                System.out.println("Слово отгадано первым игроком, конец программы.");
-//                bank1 = bank1 + increase_For_Whole_Word_1; // todo
+//                bank1 = bank1 + increase_For_Whole_Word_1;
 //                System.out.println("Итоговое количество очков у первого игрока: " + bank1);
 //                System.out.println("Итоговое количество очков у второго игрока: " + bank2);
 //                System.exit(0);
